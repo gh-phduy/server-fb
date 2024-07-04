@@ -92,7 +92,9 @@ export const logout = async (req, res) => {
 			maxAge: 0,
 			httpOnly: true,
 			secure: true,
-			sameSite: 'None' // Đảm bảo thuộc tính SameSite là None
+			sameSite: 'none',
+			partitioned: true,
+    		path: "/", 
 		  });
 		res.status(200).json({ message: "Logged out successfully" });
 	} catch (error) {
