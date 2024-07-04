@@ -88,10 +88,11 @@ export const login = async (req, res) => {
 
 export const logout = async (req, res) => {
 	try {
-		res.cookie('jwt', '', {
+		res.cookie("jwt", "", { 
+			maxAge: 0,
 			httpOnly: true,
 			secure: true,
-			sameSite: 'None', 
+			sameSite: 'None' // Đảm bảo thuộc tính SameSite là None
 		  });
 		res.status(200).json({ message: "Logged out successfully" });
 	} catch (error) {
