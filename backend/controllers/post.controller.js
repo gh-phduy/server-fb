@@ -16,7 +16,7 @@ export const createPost = async (req, res) => {
 			return res.status(400).json({ error: "Post must have text or image" });
 		}
 
-		if (img) {
+		if (img && process.env.NODE_ENV !== "development" ) {
 			const uploadedResponse = await cloudinary.uploader.upload(img);
 			img = uploadedResponse.secure_url;
 		}
@@ -47,7 +47,7 @@ export const updateIMGProfile = async (req, res) => {
 			return res.status(400).json({ error: "Image invalid" });
 		}
 
-		if (img) {
+		if (img && process.env.NODE_ENV !== "development" ) {
 			const uploadedResponse = await cloudinary.uploader.upload(img);
 			img = uploadedResponse.secure_url;
 		}
@@ -72,7 +72,7 @@ export const deletePost = async (req, res) => {
 			return res.status(401).json({ error: "You are not authorized to delete this post" });
 		}
 
-		if (post.img) {
+		if (post.img && process.env.NODE_ENV !== "development" ) {
 			const imgId = post.img.split("/").pop().split(".")[0];
 			await cloudinary.uploader.destroy(imgId);
 		}

@@ -14,11 +14,13 @@ export const updateIMGProfile = async (req, res) => {
 		const user = await User.findById(userId);
 		if (!user) return res.status(404).json({ message: "User not found" });
 
+		
+
 		if (!img) {
 			return res.status(400).json({ error: "Image invalid" });
 		}
 
-		if (img) {
+		if (img && process.env.NODE_ENV !== "development" ) {
 			const uploadedResponse = await cloudinary.uploader.upload(img);
 			img = uploadedResponse.secure_url;
 		}
@@ -44,7 +46,7 @@ export const updateIMGCover = async (req, res) => {
 			return res.status(400).json({ error: "Image invalid" });
 		}
 
-		if (img) {
+		if (img && process.env.NODE_ENV !== "development" ) {
 			const uploadedResponse = await cloudinary.uploader.upload(img);
 			img = uploadedResponse.secure_url;
 		}
