@@ -24,9 +24,11 @@ cloudinary.config({
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({
-	origin: [`${process.env.CLIENT_HOSTNAME}`, `${process.env.CLIENT_HOSTNAME_2}`],
-	credentials: true
-}))
+    origin: [`${process.env.CLIENT_HOSTNAME}`, `${process.env.CLIENT_HOSTNAME_2}`],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true
+}));
 
 app.use(express.json({ limit: "5mb" })); // to parse req.body
 // limit shouldn't be too high to prevent DOS
