@@ -11,7 +11,7 @@ import notificationRoutes from "./routes/notification.route.js";
 import cors from "cors"
 
 import connectMongoDB from "./db/connectMongoDB.js";
-// import { app, server } from "./socket/socket.js"
+import { app, server } from "./socket/socket.js"
 
 dotenv.config();
 
@@ -24,10 +24,10 @@ cloudinary.config({
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// app.use(cors({
-// 	origin: [`${process.env.CLIENT_HOSTNAME}`, `${process.env.CLIENT_HOSTNAME_2}`],
-// 	credentials: true
-// }))
+app.use(cors({
+	origin: [`${process.env.CLIENT_HOSTNAME}`, `${process.env.CLIENT_HOSTNAME_2}`],
+	credentials: true
+}))
 
 app.use(cors())
 
