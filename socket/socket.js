@@ -9,11 +9,7 @@ const app = express();
 
 
 const server = http.createServer(app);
-const io = new Server(server, {
-	cors: {
-		origin: "*"
-	},
-});
+const io = new Server(server);
 
 export const getReceiverSocketId = (receiverId) => {
 	return userSocketMap[receiverId];
